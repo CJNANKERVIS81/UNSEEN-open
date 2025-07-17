@@ -153,7 +153,7 @@ def retrieve_SEAS5(client, variables, target_months, area, folder, years=np.aran
                     year = years[j]
                     
                 if not os.path.isfile(folder + str(year) + "%.2i" % init_month + '.nc'):
-                    _retrieve_single(variables=variables,
+                    _retrieve_single(client=client, variables=variables,
                                      year=year,
                                      init_month=init_month,
                                      leadtimes=leadtime_months,
@@ -167,7 +167,7 @@ def retrieve_SEAS5(client, variables, target_months, area, folder, years=np.aran
                 year = years[j]
 
                 if not os.path.isfile(folder + str(year) + "%.2i" % init_month + '.nc'):
-                    _retrieve_single(variables=variables,
+                    _retrieve_single(client=client, variables=variables,
                                     year=year,
                                     init_month=init_month,
                                     leadtimes=leadtime_months,
