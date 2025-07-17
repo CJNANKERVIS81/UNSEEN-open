@@ -119,7 +119,7 @@ def _retrieve_single(client, variables, year, init_month, leadtimes, area, folde
         folder + str(year) + "%.2i" % init_month + '.nc')
     
     
-def retrieve_SEAS5(variables, target_months, area, folder, years=np.arange(1981, 2017)): # operational SEAS5 until 2021 
+def retrieve_SEAS5(client, variables, target_months, area, folder, years=np.arange(1981, 2017)): # operational SEAS5 until 2021 
     """Retrieve SEAS5 data from CDS.
         
         Parameters
