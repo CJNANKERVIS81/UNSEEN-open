@@ -6,7 +6,7 @@ import numpy as np
 import os
 
 
-c = cdsapi.Client()
+# c = cdsapi.Client() # Chris N - call this from the notebook using key vault credentials
 
 def _checkConsecutive(l): 
     return l == list(range(min(l), max(l)+1)) 
@@ -83,7 +83,7 @@ def print_arguments(target_months, years = np.arange(1981,1983)):
 #                   ' leadtime_month = ' + str(leadtime_months))
 
 
-def _retrieve_single(variables, year, init_month, leadtimes, area, folder):
+def _retrieve_single(client, variables, year, init_month, leadtimes, area, folder):
     """Retrieve SEAS5 data from CDS.
         
         Parameters
@@ -103,7 +103,7 @@ def _retrieve_single(variables, year, init_month, leadtimes, area, folder):
         -------
         Saves the files in the specified folder.
     """
-    c.retrieve(
+    client.retrieve(
         'seasonal-monthly-single-levels',
         {
             'format': 'netcdf',
@@ -174,7 +174,7 @@ def retrieve_SEAS5(variables, target_months, area, folder, years=np.arange(1981,
                                     area = area,
                                     folder=folder)
 
-def retrieve_ERA5(variables,
+def retrieve_ERA5(client, variables,
                   folder,
                   grid = [1.0, 1.0],
                   target_months=[
@@ -217,7 +217,7 @@ def retrieve_ERA5(variables,
     for j in range(len(years)):
         year = years[j]
         if not os.path.isfile(folder + 'ERA5_' + str(year) + '.nc'):
-            c.retrieve(
+            client.retrieve(
                 'reanalysis-era5-single-levels-monthly-means',
                 {
                     'format': 'netcdf',

@@ -3,7 +3,9 @@ Python module with functions for preprocessing cds data.
 """
 import xarray as xr
 import numpy as np
-from .cdsretrieve import _get_init_months
+
+# from .cdsretrieve import _get_init_months
+from cdsretrieve import _get_init_months # Chris N edit
 
 def merge_SEAS5(folder, target_months):
     init_months, leadtimes = _get_init_months(target_months)
